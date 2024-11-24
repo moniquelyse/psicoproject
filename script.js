@@ -46,7 +46,8 @@ document.addEventListener("DOMContentLoaded", function() {
 function initAnimations() {
     const tl = gsap.timeline();
     
-    // Primero animamos el background de tu hero (que ya existe)
+    gsap.set('.hero', { visibility: 'visible' });
+    
     tl.fromTo('.hero', 
         { 
             opacity: 0 
@@ -57,7 +58,6 @@ function initAnimations() {
             ease: 'power2.inOut'
         }
     )
-    // Después animamos los textos
     .to('.fade-in', {
         opacity: 1,
         y: 0,

@@ -3,15 +3,33 @@ gsap.registerPlugin(ScrollTrigger);
 // Configuración del scroll horizontal
 function initHorizontalScroll() {
     let sections = gsap.utils.toArray(".panel");
-    
+    let numSections = sections.length;
+
     gsap.to(sections, {
-        xPercent: -100 * (sections.length - 1),
+        xPercent: -100 * (numSections - 1),
         ease: "none",
         scrollTrigger: {
             trigger: ".horizontal-section",
             pin: true,
             scrub: 1,
-            snap: 1 / (sections.length - 1),
+            snap: {
+                // Solo aplica snap cuando estamos cerca del 90% de alineación
+                snapTo: (progress) => {
+                    const snapPoints = sections.map((_, i) => i / (numSections - 1));
+                    const threshold = 0.1; // Define qué tan cerca debe estar (10%)
+                    
+                    // Encuentra el punto más cercano al progreso actual
+                    const closestPoint = snapPoints.reduce((prev, curr) => 
+                        Math.abs(curr - progress) < Math.abs(prev - progress) ? curr : prev
+                    );
+                    
+                    // Activa el snap solo si estamos suficientemente cerca
+                    return Math.abs(closestPoint - progress) <= threshold ? closestPoint : progress;
+                },
+                duration: 0.3,
+                delay: 0.1,
+                ease: "power1.inOut",
+            },
             end: () => "+=" + document.querySelector(".horizontal-container").offsetWidth
         }
     });
@@ -20,6 +38,7 @@ function initHorizontalScroll() {
 // Inicializar cuando el DOM esté cargado
 document.addEventListener("DOMContentLoaded", function() {
     initHorizontalScroll();
+    initTestimonials();
 });
 
 (function() {
@@ -125,6 +144,3 @@ function initTestimonials() {
         };
     });
 }
-
-// Inicializar cuando el DOM esté cargado
-document.addEventListener('DOMContentLoaded', initTestimonials);

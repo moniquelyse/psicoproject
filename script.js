@@ -42,3 +42,29 @@ document.addEventListener("DOMContentLoaded", function() {
 
     console.log('%c', devtools);
 })();
+
+function initAnimations() {
+    const tl = gsap.timeline();
+    
+    // Primero animamos el background de tu hero (que ya existe)
+    tl.fromTo('.hero', 
+        { 
+            opacity: 0 
+        },
+        {
+            opacity: 1,
+            duration: 1.5,
+            ease: 'power2.inOut'
+        }
+    )
+    // Después animamos los textos
+    .to('.fade-in', {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: 'power3.out'
+    });
+}
+
+window.addEventListener('load', initAnimations);

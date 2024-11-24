@@ -36,7 +36,19 @@ body {
   font-weight: 400;
   max-width: 600px;
   line-height: 1.5;
+  margin-top: 1rem;
+}
+
+.sections .container p:first-of-type {
   margin-top: 2rem;
+}
+
+.container-2cols {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* Hero Section */
@@ -163,7 +175,7 @@ body {
 /* Footer */
 footer {
     padding: 2rem 0;
-    background-color: #333;
+    background-color: #15211F;
     color: white;
     text-align: center;
 }
@@ -190,36 +202,61 @@ footer .container {
     transform: translateY(30px);
 }
 
-.columns {
+.grid {
   display: flex;
-  flex-direction: row;
   gap: 1rem;
   flex-wrap: wrap;
   width: 100%;
 }
 
-.columns .column {
-  border-radius: 3px;
+.grid.grid-in-cols {
+  flex-direction: row;
 }
 
-.columns.col3 .column {
+.grid.grid-in-rows {
+  flex-direction: column;
+}
+
+.grid .grid-element {
+  border-radius: 3px;
+  padding: 2rem;
+}
+
+.grid.cols3 .grid-element {
     width: calc((100% - 2rem) / 3);
     min-height: 200px;
 }
 
-.columns.bordered .column {
+.grid.rows3 .grid-element {
+  width: calc((100% - 2rem) / 3);
+  min-width: 200px;
+}
+
+.grid.rows3irregular .grid-element {
+  width: calc((100% / 1.5));
+}
+
+.grid.rows3irregular .grid-element:nth-child(2n-1) {
+  align-self: flex-start;
+}
+
+.grid.rows3irregular .grid-element:nth-child(2n) {
+  align-self: flex-end;
+}
+
+.grid.bordered .grid-element {
   border: 1px solid #DFF6FF;
 }
 
-.columns.v-centered .column {
+.grid.v-centered .grid-element {
   align-content: center;
 }
 
-.columns.h-centered .column {
+.grid.h-centered .grid-element {
   justify-items: center;
 }
 
-.columns.glass .column {
+.grid.glass .grid-element {
   background: linear-gradient(90deg, #ffffff0a, #ffffff26);
 }
 
@@ -229,10 +266,6 @@ footer .container {
 
 .text-center {
   align-items: center;
-}
-
-.columns.col-p-20 .column {
-  padding: 20px;
 }
 
 .buttons-set {
@@ -245,56 +278,78 @@ footer .container {
 }
 
 .testimonials {
-    overflow: hidden;
-    padding: 4rem 0;
-    position: relative;
+  overflow: hidden;
+  padding: 4rem 0;
+  position: relative;
 }
 
 .testimonials-wrapper {
-    position: relative;
-    height: 800px;
-    width: 100vw;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    padding: 0 20%;
-    margin-top: 60px;
+  position: relative;
+  height: 800px;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 0 20%;
+  margin-top: 60px;
 }
 
 .testimonials-wrapper::before,
 .testimonials-wrapper::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 200px;
-    z-index: 2;
-    pointer-events: none;
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 200px;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .testimonials-wrapper::before {
-    top: 0;
-    background: linear-gradient(to bottom, #15211F, transparent);
+  top: 0;
+  background: linear-gradient(to bottom, #15211F, transparent);
 }
 
 .testimonials-wrapper::after {
-    bottom: 0;
-    background: linear-gradient(to top, #15211F, transparent);
+  bottom: 0;
+  background: linear-gradient(to top, #15211F, transparent);
 }
 
 .testimonials-track {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    will-change: transform;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  will-change: transform;
 }
 
 .testimonial {
-    background: rgba(223, 246, 255, 0.05);
-    border-radius: 12px;
-    padding: 24px;
-    border: 1px solid rgba(223, 246, 255, 0.1);
-    width: 416px;
+  background: rgba(223, 246, 255, 0.05);
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid rgba(223, 246, 255, 0.1);
+  width: 416px;
+}
+
+.container-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tags {
+  display: flex;
+  gap: 1rem;
+  color: #DFF6FF;
+}
+
+.tag {
+  background: rgba(223, 246, 255, 0.05);
+  border-radius: 12px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }

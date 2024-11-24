@@ -68,3 +68,63 @@ function initAnimations() {
 }
 
 window.addEventListener('load', initAnimations);
+
+function initTestimonials() {
+    const tracks = document.querySelectorAll('.testimonials-track');
+    
+    tracks.forEach((track, index) => {
+        // Triplicamos el contenido para el loop
+        const originalContent = track.innerHTML;
+        track.innerHTML = originalContent + originalContent + originalContent;
+        
+        // Posicionamos inicialmente en el segundo set
+        let currentTranslate = -track.scrollHeight / 3;
+        track.style.transform = `translate3d(0, ${currentTranslate}px, 0)`;
+        
+        const direction = index === 1 ? 1 : -1;
+        const speed = 0.15 + (index * 0.05);
+        let isHovered = false;
+        let animationFrameId = null;
+        
+        function updatePosition(timestamp) {
+            if (!isHovered) {
+                currentTranslate += speed * direction;
+                const totalHeight = track.scrollHeight;
+                const oneSetHeight = totalHeight / 3;
+                
+                // Si llegamos al final de un set, volvemos al set del medio
+                if (direction > 0 && currentTranslate > 0) {
+                    currentTranslate = -oneSetHeight;
+                } else if (direction < 0 && currentTranslate < -oneSetHeight * 2) {
+                    currentTranslate = -oneSetHeight;
+                }
+                
+                track.style.transform = `translate3d(0, ${currentTranslate}px, 0)`;
+            }
+            
+            animationFrameId = requestAnimationFrame(updatePosition);
+        }
+        
+        // Iniciar animación
+        animationFrameId = requestAnimationFrame(updatePosition);
+        
+        // Manejo del hover
+        track.addEventListener('mouseenter', () => {
+            isHovered = true;
+        });
+        
+        track.addEventListener('mouseleave', () => {
+            isHovered = false;
+        });
+        
+        // Limpiar animación cuando sea necesario
+        return () => {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
+        };
+    });
+}
+
+// Inicializar cuando el DOM esté cargado
+document.addEventListener('DOMContentLoaded', initTestimonials);

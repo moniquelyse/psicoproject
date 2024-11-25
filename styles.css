@@ -350,6 +350,8 @@ footer .container {
   display: flex;
   gap: 1rem;
   color: #DFF6FF;
+  max-width: 800px;
+  flex-wrap: wrap;
 }
 
 .tag {
@@ -359,4 +361,5 @@ footer .container {
   display: flex;
   align-items: center;
   gap: 12px;
+  white-space: nowrap;
 }

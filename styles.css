@@ -185,6 +185,7 @@ footer {
   background-color: #15211F;
   color: white;
   text-align: center;
+  margin-top: -83px;
 }
 
 footer .container {
@@ -273,6 +274,7 @@ footer .container {
 
 .text-center {
   align-items: center;
+  text-align: center;
 }
 
 .buttons-set {
@@ -400,4 +402,63 @@ footer .container {
   color: #FFFFFF;
   font-size: 1.5rem;
   font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: calc(100vw - 4rem);
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .sections .container h2 {
+        font-size: 2rem;
+    }
+
+    .content {
+        width: calc(100vw - 4rem);
+        height: calc(100vh - 4rem);
+        margin: 2rem;
+        padding: 1.5rem;
+    }
+
+    .content p {
+        font-size: 1.5rem;
+    }
+
+    .testimonials-wrapper {
+        padding: 0 5%;
+    }
+
+    .testimonial {
+        width: 100%;
+    }
+
+    footer {
+      margin-top: -118px;
+    }
+
+    footer .container {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .floating-navbar {
+        width: calc(100vw - 2rem);
+    }
+
+    .floating-navbar-container {
+        width: calc(100vw - 4rem);
+    }
+
+    .buttons-set.horizontal {
+        flex-direction: column;
+    }
+
+    .buttons-set.horizontal .cta-button:not(:first-child) {
+      margin-top: 0;
+  }
 }

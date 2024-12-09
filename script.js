@@ -40,6 +40,18 @@ document.addEventListener("DOMContentLoaded", function() {
     initHorizontalScroll();
     initTestimonials();
     initFloatingNavbar();
+//inicio botón de whatsapp
+    const whatsappLink = document.querySelector('.whatsapp-link');
+
+    whatsappLink.addEventListener('click', function(event) {
+        event.preventDefault(); // Evita el comportamiento por defecto del enlace
+
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const url = isMobile ? whatsappLink.getAttribute('data-mobile') : whatsappLink.getAttribute('data-desktop');
+
+        window.open(url, '_blank');
+    });
+    //fin botón de whatsapp
 });
 
 (function() {

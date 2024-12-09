@@ -39,6 +39,7 @@ function initHorizontalScroll() {
 document.addEventListener("DOMContentLoaded", function() {
     initHorizontalScroll();
     initTestimonials();
+    initFloatingNavbar();
 });
 
 (function() {
@@ -142,5 +143,19 @@ function initTestimonials() {
                 cancelAnimationFrame(animationFrameId);
             }
         };
+    });
+}
+
+function initFloatingNavbar() {
+    const navbar = document.getElementById('floating-navbar');
+    const heroSection = document.querySelector('.hero');
+
+    window.addEventListener('scroll', () => {
+        const heroBottom = heroSection.getBoundingClientRect().bottom;
+        if (heroBottom <= 0) {
+            navbar.classList.add('visible');
+        } else {
+            navbar.classList.remove('visible');
+        }
     });
 }

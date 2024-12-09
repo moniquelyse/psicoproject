@@ -181,10 +181,10 @@ body {
 
 /* Footer */
 footer {
-    padding: 2rem 0;
-    background-color: #15211F;
-    color: white;
-    text-align: center;
+  padding: 2rem 0;
+  background-color: #15211F;
+  color: white;
+  text-align: center;
 }
 
 footer .container {
@@ -194,14 +194,14 @@ footer .container {
 }
 
 .hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
 }
 
 .fade-in {
@@ -362,4 +362,42 @@ footer .container {
   align-items: center;
   gap: 12px;
   white-space: nowrap;
+}
+
+.floating-navbar {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100vw - 6rem);
+  background-color: rgba(21, 33, 31, 0.8);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
+  border-radius: 16px;
+  border: 1px solid rgba(223, 246, 255, 0.1);
+}
+
+.floating-navbar-container {
+  width: calc(100vw - 8rem);
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.floating-navbar.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.floating-navbar h1 {
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
